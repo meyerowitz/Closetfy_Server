@@ -1,6 +1,4 @@
-# 🌟 Catwalk Closet Server Repository 🌟
-
-![Catwalk Closet Server Repository Banner]
+![flyer_server_repository.png]
 
 **El motor detrás de tu aplicación de moda y organización. Estilo y funcionalidad se encuentran en este backend.**
 
