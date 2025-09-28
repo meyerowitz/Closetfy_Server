@@ -1,4 +1,4 @@
-![flyer_server_repository.png]
+![flyer_server_repository.png](flyer_server_repository.png)
 
 **El motor detrás de tu aplicación de moda y organización. Estilo y funcionalidad se encuentran en este backend.**
 
