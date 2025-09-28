@@ -1,0 +1,296 @@
+/* VARIABLES BÁSICAS */
+:root {
+    --primary-color: #5d3f8e; /* Púrpura principal */
+    --secondary-color: #6c757d; /* Gris */
+    --background-color: #f8f9fa; /* Gris muy claro (Fondo de la página) */
+    --card-background: #ffffff;
+    --sidebar-dark-bg: #1f2136; /* 👈 Color Oscuro para el Sidebar */
+    --sidebar-link-color: #b0b0d0; /* Color de texto claro para el sidebar */
+    --text-color: #343a40;
+    --red-placeholder: #dc3545; /* Rojo para las áreas de imagen/gráfico */
+}
+
+/* RESET Y ESTILOS GLOBALES */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+/* 1. LAYOUT PRINCIPAL (HEADER Y CONTENIDO) */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 60px 1fr;
+    height: 100vh;
+}
+
+/* BARRA SUPERIOR (HEADER) */
+.top-nav {
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: var(--card-background);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.logo-icon-placeholder {
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.main-links a {
+    margin-right: 20px;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+.client-portal-btn {
+    padding: 8px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* 2. CONTENIDO BAJO EL HEADER */
+.dashboard-content {
+    grid-column: 1 / 3;
+    display: grid;
+    grid-template-columns: 250px 1fr; /* Sidebar y Main Panel */
+}
+
+/* 2.1. BARRA LATERAL (SIDEBAR) - APLICACIÓN DEL COLOR OSCURO */
+.sidebar {
+    background-color: var(--sidebar-dark-bg); /* 👈 APLICACIÓN DEL COLOR OSCURO */
+    padding-top: 20px;
+    border-right: 1px solid #31335b;
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.nav-item a {
+    display: block;
+    padding: 10px 20px;
+    color: var(--sidebar-link-color); /* Color de texto claro */
+    transition: background-color 0.2s;
+}
+
+.nav-item a:hover {
+    background-color: #31335b; /* Color de fondo al pasar el ratón */
+    color: white;
+}
+
+/* Elemento activo en el sidebar */
+.nav-item.active {
+    background-color: var(--sidebar-dark-bg);
+    position: relative;
+    /* Ajuste de padding para que el borde izquierdo quede visible en el enlace */
+    padding-left: 0;
+}
+
+.nav-item.active a {
+    background-color: #31335b; /* Fondo de la opción activa */
+    color: white;
+    font-weight: 500;
+    border-left: 5px solid var(--primary-color); /* Línea de acento Púrpura */
+    padding-left: 15px; /* Ajuste para el borde */
+}
+
+/* Asegurar que el enlace activo mantenga su estilo en hover */
+.nav-item.active a:hover {
+    background-color: #31335b;
+}
+
+/* Se elimina el estilo anterior de la pseudo-clase */
+.nav-item.active::before {
+    content: none;
+}
+
+/* 2.2. ÁREA PRINCIPAL DEL DASHBOARD */
+.main-panel {
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.main-panel h1 {
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+/* FILAS DE TARJETAS Y DATOS (USANDO GRID PARA LA MAQUETACIÓN) */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.data-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+/* ESTILOS PARA LAS ÁREAS DE IMAGEN/GRÁFICO (REQUERIMIENTO: DIV SIMPLE EN ROJO) */
+.chart-placeholder {
+    height: 150px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.red-placeholder {
+    background-color: var(--red-placeholder);
+    border: 2px dashed #f5c2c7;
+}
+
+.system-status .chart-placeholder {
+    height: 180px;
+    font-size: 1.2rem;
+}
+
+.status-details span {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 0.85rem;
+}
+
+/* ESTILOS PARA LAS TABLAS */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.data-table th, .data-table td {
+    padding: 10px 0;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.data-table th {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.status-ok {
+    color: #28a745; /* Verde */
+    font-weight: 500;
+}
+
+.status-maintenance {
+    color: #ffc107; /* Amarillo */
+    font-weight: 500;
+}
+
+.status-replicate {
+    color: #17a2b8; /* Azul claro */
+    font-weight: 500;
+}
+
+.activity-log-mini p {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    padding: 3px 0;
+}
+
+/* ACCIONES RÁPIDAS */
+.quick-actions {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #f1f1f1;
+}
+
+.action-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-bottom: 10px;
+    transition: opacity 0.2s;
+}
+
+.action-btn.create {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.action-btn.add {
+    background-color: #e9ecef;
+    color: var(--text-color);
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+}
+
+/* MEDIA QUERIES PARA RESPONSIVIDAD BÁSICA */
+@media (max-width: 1200px) {
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+    .data-row {
+        grid-template-columns: 1fr;
+    }
+    .dashboard-container, .dashboard-content {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        display: none;
+    }
+    .top-nav {
+        grid-column: 1 / 2;
+    }
+}

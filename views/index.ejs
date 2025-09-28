@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Infrastructure Overview - Catwalfy Closet</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    
+    <link rel="shortcut icon" href="/styles/assets/mi minino2.png" />
+    </head>
+<body>
+    <div class="dashboard-container">
+        <header class="top-nav">
+            <div class="logo">
+                <img src="/styles/assets/logo_sintext.png" style="width: 50px; height: 40px;">
+                
+                <img src="/styles/assets/texto.png" style="width: 50px; height: 40px;">
+                
+            </div>
+            <nav class="main-links">
+                <a href="#">Services</a>
+                <a href="#">Pricing</a>
+                <a href="#">Support</a>
+                <button class="client-portal-btn">Client Portal</button>
+            </nav>
+        </header>
+
+        <main class="dashboard-content">
+            <aside class="sidebar">
+                <nav>
+                    <ul>
+                        <li class="nav-item active">
+                            <a href="/">🏠 Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/articulos">📦 Storage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/users">👤 Users</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <section class="main-panel">
+                <h1>Server Infrastructure Overview</h1>
+
+                <div class="stats-row">
+                    <div class="card system-status">
+                        <h2>System Status</h2>
+                        <div class="chart-placeholder red-placeholder" style="--percent: 95%;">
+                            95% operational
+                        </div>
+                        <p class="status-details">
+                            <span>🔵 Rannus</span>
+                            <span>🟣 Ttimes</span>
+                            <span>🟡 Analytics Cluster</span>
+                        </p>
+                    </div>
+
+                    <div class="card system-status-area">
+                        <h2>System Status</h2>
+                        <div class="chart-placeholder red-placeholder">
+                            Gráfico de Área (Rojo)
+                        </div>
+                    </div>
+
+                    <div class="card resource-usage">
+                        <h2>Resource Memory Usage</h2>
+                        <div class="chart-placeholder red-placeholder">
+                            Gráfico de Memoria (Rojo)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-row">
+                    <div class="card active-servers-card">
+                        <h2>Active Servers</h2>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>IP Address</th>
+                                    <th>Uptimes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Web-01</td>
+                                    <td class="status-ok">Operational</td>
+                                    <td>192.168.10.1</td>
+                                    <td>23d 4h</td>
+                                </tr>
+                                <tr>
+                                    <td>Deb-01</td>
+                                    <td class="status-maintenance">Maintenance</td>
+                                    <td>10.0.0.5</td>
+                                    <td>26d 0h</td>
+                                </tr>
+                                <tr>
+                                    <td>DBMain-Z3</td>
+                                    <td class="status-replicate">DB-Replicating</td>
+                                    <td>172.16.0.20</td>
+                                    <td>50.12h</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="activity-log-mini">
+                             <p>[NMG] User "admin" entered quickscope on Top Weld. 8 errors. </p>
+                            <p>[ERR] Later Database Backup failed on 5.0 Min/90secs</p>
+                        </div>
+                    </div>
+
+                    <div class="card recent-activity-card">
+                        <h2>Recent Activity Log</h2>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>IP Address</th>
+                                    <th>Uptime</th>
+                                    <th>Load</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>192.168.10.1</td>
+                                    <td>30d 4h</td>
+                                    <td>100%</td>
+                                </tr>
+                                <tr>
+                                    <td>Analytics-03</td>
+                                    <td>30d 13h</td>
+                                    <td>60%</td>
+                                </tr>
+                                </tbody>
+                        </table>
+
+                        <div class="quick-actions">
+                            <h2>Quick Actions</h2>
+                            <button class="action-btn create">Create Backup</button>
+                            <button class="action-btn add">Add User</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
