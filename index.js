@@ -15,14 +15,14 @@ app.set('views', './views'); // Esto busca las plantillas en una carpeta llamada
 app.listen(3000)
 
 const db = createPool({
-    host: 'localhost',
-    port:3306,
-    user:'root',
-    password:'',
-    database:'closetfy_bd'
+   host: process.env.DB_HOST,
+   user: process.env.DB_USER,
+   password: process.env.DB_PASSWORD,
+   database: process.env.DB_NAME,
+   port: process.env.DB_PORT,
 });
 
-console.log('  ---> Server is listened at port 3.000')
+console.log('  ---> Server is listened at port ****')
 
 
 console.log('\n\n Restarting routers.get Post etc')
