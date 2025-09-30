@@ -3,19 +3,29 @@ import { createPool } from 'mysql2/promise';
 import { Router } from 'express';
 
 const app = express();
-const router = Router();
-app.use(router); 
+const router = Router(); // Inicializa el router
+
+// ----------------------------------------------------
+// 1. CONFIGURACIÓN EJS Y ARCHIVOS ESTÁTICOS
+// ----------------------------------------------------
+app.set('view engine', 'ejs');
+app.set('views', './views'); // Indica que las plantillas están en la carpeta 'views'
+
+// 🛑 ORDEN CRÍTICO: Sirve archivos estáticos (CSS, JS, imágenes) ANTES que las rutas.
 app.use(express.static('public')); 
 
-app.set('view engine', 'ejs');
-app.set('views', './views');
+// 🛑 ORDEN CRÍTICO: Usa el router global DESPUÉS de los archivos estáticos.
+app.use(router); 
+// ----------------------------------------------------
+
+
+// ... [Código de logs] ...
 
 // Función asíncrona para manejar la inicialización y la conexión
 async function main() {
     try {
-        // 1. CONEXIÓN A LA BASE DE DATOS (ESPERA A QUE EL POOL ESTÉ LISTO)
+        // CONEXIÓN A LA BASE DE DATOS (ESPERA)
         const db = createPool({
-            // Los valores se leen de las variables de entorno de Railway
             host: process.env.DB_HOST,
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
@@ -23,39 +33,42 @@ async function main() {
             port: process.env.DB_PORT,
         });
 
-        // Verificación de Conexión
         await db.query("SELECT 1"); 
         console.log('✅ Conexión a DB de Railway establecida con éxito.');
-        
-        // 2. DEFINICIÓN DE RUTAS (Ahora pueden usar await db.query)
+
+        // ----------------------------------------------------
+        // 2. DEFINICIÓN DE RUTAS (AHORA DENTRO DE main Y USANDO 'db')
+        // ----------------------------------------------------
         
         // Ruta raíz
         router.get("/", async(req,res)=>{
-            res.render('index', { titulo: "🎉 ¡Bienvenido a mi Servidor Web!" });
+            // EJS busca './views/index.ejs'
+            res.render('index', { titulo: "Bienvenido" });
         });
         
-        // Ruta /users (con await corregido)
+        // Ruta /users (EJS renderizado)
         router.get("/users", async (req, res) => {
+             // 🛑 CORRECCIÓN: Usa await para obtener los datos
              const [rows] = await db.query("SELECT * FROM user"); 
-             res.status(200).render('users', { users: rows, title: `Lista de Usuarios (${rows.length})`});
+             // EJS busca './views/users.ejs'
+             res.status(200).render('users', { users: rows, title: `Lista de Usuarios`});
         });
         
-        // Ruta /articulos (con await corregido)
+        // Ruta /articulos (EJS renderizado)
         router.get("/articulos", async (req, res) => {
              const [rows] = await db.query("SELECT * FROM articulos"); 
-             res.status(200).render('articulos', { articulos: rows, title: `Inventario de Artículos (${rows.length})`});
+             // EJS busca './views/articulos.ejs'
+             res.status(200).render('articulos', { articulos: rows, title: `Inventario`});
         });
 
 
-        // 3. INICIAR EL SERVIDOR (SOLO SI LA CONEXIÓN FUE EXITOSA)
+        // 3. INICIAR EL SERVIDOR (SOLO DESPUÉS DE LA CONEXIÓN EXITOSA)
         app.listen(3000, () => {
             console.log(`\n\n🎉 Servidor Express iniciado y escuchando en el puerto 3000`);
-            console.log(`Dominio público: [Tu Dominio Railway]`);
         });
 
     } catch (error) {
         console.error('\n\n❌ ERROR FATAL EN INICIALIZACIÓN:', error.message);
-        console.error('El servidor no pudo iniciar. Revisa las variables de entorno (DB_HOST, etc.).');
         process.exit(1); 
     }
 }
