@@ -1,0 +1,15 @@
+{
+  "deployments": [
+    {
+      "name": "Closetfy_Server",
+      "routeConfigs": {
+        "routes": [
+          {
+            "path": "/*",
+            "rewrite": "/"
+          }
+        ]
+      }
+    }
+  ]
+}
