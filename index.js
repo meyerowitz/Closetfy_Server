@@ -25,7 +25,7 @@ const db = createPool({
     host: 'localhost',
     user:'root',
     password: '',
-    database: 'closetfy_db',
+    database: 'closetfy_bd',
     port: 3306
 });
 
