@@ -103,7 +103,7 @@ router.get("/articulos", async (req, res) => {
             // Si no hay artículos, renderiza la vista con una lista vacía
             console.log("No se encontraron artículos en la base de datos.");
             return res.render('articulos', { 
-                articulos: [], // Lista vacía para que el EJS muestre el placeholder
+                articulos: rows, // Lista vacía para que el EJS muestre el placeholder
                 title: "Inventario de Artículos (0 Encontrados)"
             });
         }
