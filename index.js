@@ -11,13 +11,22 @@ app.set('view engine', 'ejs');
 
 app.set('views', './views'); // Esto busca las plantillas en una carpeta llamada 'views'
 
+/*
+const db = createPool({
+   host: process.env.DB_HOST || 'shuttle.proxy.rlwy.net',
+   user: process.env.DB_USER || 'root',
+   password: process.env.DB_PASSWORD || 'gJenkzfcApHQzdKBnSPXfndppXMTOuLX',
+   database: process.env.DB_NAME || 'railway',
+   port: process.env.DB_PORT || 20208,
+});
+*/
 
 const db = createPool({
-   host: process.env.DB_HOST,
-   user: process.env.DB_USER,
-   password: process.env.DB_PASSWORD,
-   database: process.env.DB_NAME,
-   port: process.env.DB_PORT,
+    host: 'localhost',
+    user:'root',
+    password: '',
+    database: 'closetfy_db',
+    port: 3306
 });
 
 app.listen(3000)
@@ -43,7 +52,7 @@ router.get("/", async(req,res)=>{
 } )
 
 router.get("/ping", async (req,res)=>{
-    const result = db.query("SELECT * FROM user;");
+    const result = await db.query("SELECT * FROM user;");
     console.log("usuarios: "+ result)
     res.json(result)
 })
@@ -51,7 +60,7 @@ router.get("/ping", async (req,res)=>{
 router.get("/user", async (req, res)=>{
     res.render('users', {
         users: [],
-                title: "Lista de Usuarios (0 Encontrados)"
+        title: "Lista de Usuarios (0 Encontrados)"
     })
 })
 
