@@ -97,7 +97,7 @@ router.get("/articulos", async (req, res) => {
     try {
         // 1. Ejecutar la consulta a la base de datos
         // NOTA: Asegúrate de que tu tabla se llame 'articulos' en tu DB.
-      /*  const [rows] = await db.query("SELECT * FROM articulos"); 
+       const [rows] = await db.query("SELECT * FROM articulos"); 
 
         if (rows.length === 0) {
             // Si no hay artículos, renderiza la vista con una lista vacía
@@ -110,7 +110,7 @@ router.get("/articulos", async (req, res) => {
         
         // 2. Responder con la vista EJS y pasar los datos (rows)
         console.log(`Se encontraron ${rows.length} artículos.`);
-        */
+        
         res.status(200).render('articulos', {
             //articulos: rows, 
             title: `Inventario de Artículos (${rows.length})`
