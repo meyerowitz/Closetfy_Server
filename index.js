@@ -44,8 +44,15 @@ router.get("/", async(req,res)=>{
 
 router.get("/ping", async (req,res)=>{
     const result = db.query("SELECT * FROM user;");
-    console.log("usuarios: "+result)
+    console.log("usuarios: "+ result)
     res.json(result)
+})
+
+router.get("/user", async (req, res)=>{
+    res.render('users', {
+        users: [],
+                title: "Lista de Usuarios (0 Encontrados)"
+    })
 })
 
 router.get("/users", async (req, res) => {
@@ -83,7 +90,7 @@ router.get("/articulos", async (req, res) => {
     try {
         // 1. Ejecutar la consulta a la base de datos
         // NOTA: Asegúrate de que tu tabla se llame 'articulos' en tu DB.
-        const [rows] = await db.query("SELECT * FROM articulos"); 
+      /*  const [rows] = await db.query("SELECT * FROM articulos"); 
 
         if (rows.length === 0) {
             // Si no hay artículos, renderiza la vista con una lista vacía
@@ -96,8 +103,9 @@ router.get("/articulos", async (req, res) => {
         
         // 2. Responder con la vista EJS y pasar los datos (rows)
         console.log(`Se encontraron ${rows.length} artículos.`);
+        */
         res.status(200).render('articulos', {
-            articulos: rows, // <-- Aquí pasamos la lista para el carrusel EJS
+            //articulos: rows, 
             title: `Inventario de Artículos (${rows.length})`
         });
 
