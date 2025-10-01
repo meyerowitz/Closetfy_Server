@@ -22,7 +22,7 @@ const db = createPool({
    port:  20208,
 });
 
-//app.listen(3000)
+app.listen(3000)
 
 console.log('  ---> Server is listened at port 3.000')
 
