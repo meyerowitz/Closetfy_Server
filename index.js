@@ -15,14 +15,14 @@ app.set('views', './views'); // Esto busca las plantillas en una carpeta llamada
 
 
 const db = createPool({
-   host: process.env.DB_HOST || 'shuttle.proxy.rlwy.net',
-   user: process.env.DB_USER || 'root',
-   password: process.env.DB_PASSWORD || 'gJenkzfcApHQzdKBnSPXfndppXMTOuLX',
-   database: process.env.DB_NAME || 'railway',
-   port: process.env.DB_PORT || 20208,
+   host:  'shuttle.proxy.rlwy.net',
+   user:  'root',
+   password:  'gJenkzfcApHQzdKBnSPXfndppXMTOuLX',
+   database: 'railway',
+   port:  20208,
 });
 
-app.listen(3000)
+//app.listen(3000)
 
 console.log('  ---> Server is listened at port 3.000')
 
