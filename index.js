@@ -11,7 +11,9 @@ app.set('view engine', 'ejs');
 
 app.set('views', './views'); // Esto busca las plantillas en una carpeta llamada 'views'
 
-/*
+
+
+
 const db = createPool({
    host: process.env.DB_HOST || 'shuttle.proxy.rlwy.net',
    user: process.env.DB_USER || 'root',
@@ -19,20 +21,16 @@ const db = createPool({
    database: process.env.DB_NAME || 'railway',
    port: process.env.DB_PORT || 20208,
 });
-*/
-
-const db = createPool({
-    host: 'localhost',
-    user:'root',
-    password: '',
-    database: 'closetfy_bd',
-    port: 3306
-});
 
 app.listen(3000)
 
 console.log('  ---> Server is listened at port 3.000')
 
+console.log(process.env.DB_HOST +
+   process.env.DB_USER +
+   process.env.DB_PASSWORD +
+    process.env.DB_NAME +
+   process.env.DB_PORT )
 
 console.log('\n\n Restarting routers.get Post etc')
 
